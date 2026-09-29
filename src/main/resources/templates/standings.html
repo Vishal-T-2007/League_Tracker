@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LeagueTrack - Standings</title>
+    <meta name="description" content="Official intramural tournament standings, points table, and leaderboard">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a th:href="@{/}" class="logo" id="nav-logo">League<span>Track</span></a>
+            <ul class="nav-links">
+                <li><a th:href="@{/dashboard}" class="nav-link"        id="nav-dashboard">Dashboard</a></li>
+                <li><a th:href="@{/teams}"     class="nav-link"        id="nav-teams">Teams</a></li>
+                <li><a th:href="@{/fixtures}"  class="nav-link"        id="nav-fixtures">Fixtures</a></li>
+                <li><a th:href="@{/standings}" class="nav-link active" id="nav-standings">Standings</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+
+        <header class="page-header">
+            <div class="page-title-group">
+                <h1>Tournament Standings</h1>
+                <p>Points table sorted by points, wins, and team name</p>
+            </div>
+            <div id="standings-count-badge" style="font-size: 13px; color: #555;">0 Teams</div>
+        </header>
+
+        <!-- Scoring Rules -->
+        <div class="scoring-rules-banner">
+            <strong>Scoring Rules:</strong>
+            <span><strong style="color: #2e7d32;">Win</strong> = 3 Points</span>
+            <span><strong style="color: #555;">Draw</strong> = 1 Point</span>
+            <span><strong style="color: #c62828;">Loss</strong> = 0 Points</span>
+        </div>
+
+        <!-- Standings Table -->
+        <section>
+            <div class="empty-state" id="standings-empty-state" style="display: block;">
+                <div class="empty-state-title">No standings available yet.</div>
+                <p class="empty-state-desc">Register teams to initialise the leaderboard. Record match results to update points.</p>
+            </div>
+
+            <div class="table-container" id="standings-table-container" style="display: none;">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th style="width: 60px;">Rank</th>
+                            <th>Team</th>
+                            <th style="width: 80px;">Played</th>
+                            <th style="width: 80px;">Wins</th>
+                            <th style="width: 80px;">Draws</th>
+                            <th style="width: 80px;">Losses</th>
+                            <th style="width: 80px;">Points</th>
+                        </tr>
+                    </thead>
+                    <tbody id="standings-table-body"></tbody>
+                </table>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>LeagueTrack &copy; 2026 &ndash; Intramural Sports Tournament Fixture and Standings System</p>
+    </footer>
+
+    <script th:src="@{/js/standings.js}"></script>
+</body>
+</html>

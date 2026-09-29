@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LeagueTrack - Dashboard</title>
+    <meta name="description" content="Intramural Sports Tournament Fixture and Standings Management Dashboard">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a th:href="@{/}" class="logo" id="nav-logo">League<span>Track</span></a>
+            <ul class="nav-links">
+                <li><a th:href="@{/dashboard}" class="nav-link active" id="nav-dashboard">Dashboard</a></li>
+                <li><a th:href="@{/teams}"     class="nav-link"        id="nav-teams">Teams</a></li>
+                <li><a th:href="@{/fixtures}"  class="nav-link"        id="nav-fixtures">Fixtures</a></li>
+                <li><a th:href="@{/standings}" class="nav-link"        id="nav-standings">Standings</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+
+        <header class="page-header">
+            <div class="page-title-group">
+                <h1>Tournament Dashboard</h1>
+                <p>Overview of teams, fixtures, and current standings</p>
+            </div>
+            <div class="quick-actions">
+                <a th:href="@{/teams}"    class="btn btn-secondary" id="btn-quick-teams">Register Team</a>
+                <a th:href="@{/fixtures}" class="btn btn-primary"   id="btn-quick-fixtures">Generate Schedule</a>
+            </div>
+        </header>
+
+        <!-- Stats Summary -->
+        <section class="stats-grid">
+            <div class="stat-card" id="card-total-teams">
+                <div class="stat-info">
+                    <h3>Total Teams</h3>
+                    <div class="stat-number" id="stat-teams">0</div>
+                </div>
+            </div>
+            <div class="stat-card" id="card-total-fixtures">
+                <div class="stat-info">
+                    <h3>Total Fixtures</h3>
+                    <div class="stat-number" id="stat-fixtures">0</div>
+                </div>
+            </div>
+            <div class="stat-card" id="card-completed-matches">
+                <div class="stat-info">
+                    <h3>Completed Matches</h3>
+                    <div class="stat-number" id="stat-matches">0</div>
+                </div>
+            </div>
+            <div class="stat-card" id="card-current-leader">
+                <div class="stat-info">
+                    <h3>Current Leader</h3>
+                    <div class="stat-highlight" id="stat-leader">No leader yet</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Dashboard Preview Grid -->
+        <div class="dashboard-grid">
+
+            <!-- Top Standings Preview -->
+            <section class="card">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; padding-bottom: 8px; border-bottom: 1px solid #e0e0e0;">
+                    <h2 style="border: none; margin: 0; padding: 0;">Current Standings</h2>
+                    <a th:href="@{/standings}" style="color: #1565c0; font-size: 13px; text-decoration: none;">View full table</a>
+                </div>
+
+                <div class="empty-state" id="top-standings-empty" style="display: block; padding: 30px 16px;">
+                    <div class="empty-state-title">No standings available yet.</div>
+                    <p class="empty-state-desc" style="margin-bottom: 0;">Register teams and record match results to populate the standings.</p>
+                </div>
+
+                <div class="table-container" id="top-standings-table" style="display: none;">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Team</th>
+                                <th>P</th>
+                                <th>W</th>
+                                <th>D</th>
+                                <th>L</th>
+                                <th>Pts</th>
+                            </tr>
+                        </thead>
+                        <tbody id="top-standings-body"></tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Recent Fixtures Preview -->
+            <section class="card">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; padding-bottom: 8px; border-bottom: 1px solid #e0e0e0;">
+                    <h2 style="border: none; margin: 0; padding: 0;">Tournament Fixtures</h2>
+                    <a th:href="@{/fixtures}" style="color: #1565c0; font-size: 13px; text-decoration: none;">Manage fixtures</a>
+                </div>
+
+                <div class="empty-state" id="recent-fixtures-empty" style="display: block; padding: 30px 16px;">
+                    <div class="empty-state-title">No fixtures generated yet.</div>
+                    <p class="empty-state-desc" style="margin-bottom: 0;">Generate a round-robin schedule to start scheduling games.</p>
+                </div>
+
+                <div class="table-container" id="recent-fixtures-table" style="display: none;">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Round</th>
+                                <th>Match</th>
+                                <th>Status</th>
+                                <th>Result</th>
+                            </tr>
+                        </thead>
+                        <tbody id="recent-fixtures-body"></tbody>
+                    </table>
+                </div>
+            </section>
+
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>LeagueTrack &copy; 2026 &ndash; Intramural Sports Tournament Fixture and Standings System</p>
+    </footer>
+
+    <script th:src="@{/js/dashboard.js}"></script>
+</body>
+</html>

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LeagueTrack - Team Management</title>
+    <meta name="description" content="Register, edit, and manage tournament teams">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a th:href="@{/}" class="logo" id="nav-logo">League<span>Track</span></a>
+            <ul class="nav-links">
+                <li><a th:href="@{/dashboard}" class="nav-link"        id="nav-dashboard">Dashboard</a></li>
+                <li><a th:href="@{/teams}"     class="nav-link active" id="nav-teams">Teams</a></li>
+                <li><a th:href="@{/fixtures}"  class="nav-link"        id="nav-fixtures">Fixtures</a></li>
+                <li><a th:href="@{/standings}" class="nav-link"        id="nav-standings">Standings</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+
+        <header class="page-header">
+            <div class="page-title-group">
+                <h1>Tournament Teams</h1>
+                <p>Register participating teams and manage the official team roster</p>
+            </div>
+            <div id="team-count-badge" style="font-size: 13px; color: #555;">0 Teams</div>
+        </header>
+
+        <!-- Add Team Form -->
+        <section class="card form-card">
+            <h2>Register New Team</h2>
+            <form id="add-team-form" class="form-inline">
+                <div class="form-group">
+                    <label for="team-name-input">Team Name</label>
+                    <input type="text" id="team-name-input" class="form-control"
+                           placeholder="Enter team name (e.g. Team A)" required autocomplete="off">
+                </div>
+                <div style="align-self: flex-end;">
+                    <button type="submit" class="btn btn-primary" id="btn-add-team">Add Team</button>
+                </div>
+            </form>
+        </section>
+
+        <!-- Teams List -->
+        <section>
+            <div class="empty-state" id="teams-empty-state" style="display: block;">
+                <div class="empty-state-title">No teams registered yet.</div>
+                <p class="empty-state-desc">Use the form above to register the first team.</p>
+            </div>
+
+            <div class="table-container" id="teams-table-container" style="display: none;">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th style="width: 50px;">#</th>
+                            <th>Team Name</th>
+                            <th>Registered On</th>
+                            <th style="width: 160px;">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="teams-table-body"></tbody>
+                </table>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Edit Team Modal -->
+    <div class="modal-backdrop" id="edit-modal">
+        <div class="modal-box">
+            <div class="modal-header">
+                <h3>Edit Team Name</h3>
+                <button type="button" class="modal-close" onclick="closeEditModal()">&#10005;</button>
+            </div>
+            <form id="edit-team-form">
+                <div class="modal-body">
+                    <input type="hidden" id="edit-team-id">
+                    <div class="form-group">
+                        <label for="edit-team-name">New Team Name</label>
+                        <input type="text" id="edit-team-name" class="form-control" required autocomplete="off">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" onclick="closeEditModal()">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Save Changes</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>LeagueTrack &copy; 2026 &ndash; Intramural Sports Tournament Fixture and Standings System</p>
+    </footer>
+
+    <script th:src="@{/js/teams.js}"></script>
+</body>
+</html>
